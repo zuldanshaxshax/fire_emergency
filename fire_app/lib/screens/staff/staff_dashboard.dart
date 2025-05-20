@@ -27,17 +27,21 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
         elevation: 0,
         backgroundColor: theme.colorScheme.surface,
         title: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               Icons.local_fire_department,
               color: theme.colorScheme.primary,
             ),
             const SizedBox(width: 8),
-            Text(
-              'Fire Emergency Staff',
-              style: GoogleFonts.poppins(
-                color: theme.colorScheme.primary,
-                fontWeight: FontWeight.w600,
+            Flexible(
+              child: Text(
+                'Fire Emergency Staff',
+                style: GoogleFonts.poppins(
+                  color: theme.colorScheme.primary,
+                  fontWeight: FontWeight.w600,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

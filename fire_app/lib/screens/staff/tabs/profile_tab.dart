@@ -299,71 +299,22 @@ class _ProfileTabState extends State<ProfileTab> {
 
   Widget _buildStats(ThemeData theme) {
     // These would be fetched from the API in a real app
-    final stats = [
-      {
-        'label': 'Emergencies Handled',
-        'value': '27',
-        'icon': Icons.check_circle
-      },
-      {
-        'label': 'Avg. Response Time',
-        'value': '15 min',
-        'icon': Icons.timelapse
-      },
-      {'label': 'Rating', 'value': '4.8 / 5', 'icon': Icons.star},
-    ];
+    // final stats = [
+    //   {
+    //     'label': 'Emergencies Handled',
+    //     'value': '27',
+    //     'icon': Icons.check_circle
+    //   },
+    //   {
+    //     'label': 'Avg. Response Time',
+    //     'value': '15 min',
+    //     'icon': Icons.timelapse
+    //   },
+    //   {'label': 'Rating', 'value': '4.8 / 5', 'icon': Icons.star},
+    // ];
 
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Your Stats',
-              style: GoogleFonts.poppins(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: stats.map((stat) {
-                return Expanded(
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor:
-                            theme.colorScheme.primary.withOpacity(0.1),
-                        child: Icon(
-                          stat['icon'] as IconData,
-                          color: theme.colorScheme.primary,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        stat['value'] as String,
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        stat['label'] as String,
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              }).toList(),
-            ),
-          ],
-        ),
-      ),
+      child: SizedBox(height: 1),
     );
   }
 

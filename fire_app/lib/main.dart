@@ -10,9 +10,19 @@ import 'package:fire_app/screens/splash_screen.dart';
 import 'package:fire_app/screens/client/client_dashboard.dart';
 import 'package:fire_app/screens/staff/staff_dashboard.dart';
 import 'package:fire_app/screens/client/report_emergency_screen.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Mapbox with your access token
+  try {
+    MapboxOptions.setAccessToken(
+        "pk.eyJ1IjoiaHVzZWluaGFzaGkiLCJhIjoiY205dGZnamowMGJpcTJscjZ1d3MwbW44diJ9.rPualb13tYJzXX_1vSXBGg");
+    print("Mapbox token set successfully");
+  } catch (e) {
+    print("Error setting Mapbox token: $e");
+  }
 
   runApp(const MyApp());
 }

@@ -5,6 +5,7 @@ import 'package:fire_app/providers/auth_provider.dart';
 import 'package:fire_app/providers/assignment_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:fire_app/screens/staff/emergency_details_screen.dart';
 
 class AssignmentsTab extends StatefulWidget {
   const AssignmentsTab({Key? key}) : super(key: key);
@@ -55,36 +56,19 @@ class _AssignmentsTabState extends State<AssignmentsTab> {
     }
   }
 
-  Future<void> _navigateToLocation(
-      double? lat, double? lng, String address) async {
-    // Try to open in Google Maps
-    String url;
-    if (lat != null && lng != null) {
-      url = 'https://www.google.com/maps/search/?api=1&query=$lat,$lng';
-    } else if (address.isNotEmpty) {
-      url =
-          'https://www.google.com/maps/search/?api=1&query=${Uri.encodeComponent(address)}';
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('No location data available'),
-          backgroundColor: Colors.red,
+  Future<void> _navigateToLocation(double? lat, double? lng, String address,
+      Map<String, dynamic> emergency) async {
+    // Navigate to emergency details screen
+    if (mounted) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EmergencyDetailsScreen(
+            emergencyId: emergency['id'],
+            emergency: emergency,
+          ),
         ),
       );
-      return;
-    }
-
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Could not open maps'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
     }
   }
 
@@ -483,7 +467,8 @@ class _AssignmentsTabState extends State<AssignmentsTab> {
                       'Navigate',
                       style: GoogleFonts.poppins(),
                     ),
-                    onPressed: () => _navigateToLocation(lat, lng, address),
+                    onPressed: () =>
+                        _navigateToLocation(lat, lng, address, emergency),
                   ),
                 ),
                 const SizedBox(width: 12),
